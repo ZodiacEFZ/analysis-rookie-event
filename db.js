@@ -5,7 +5,10 @@ module.exports = {
   "data": {
     "events": {},
     "stats": {},
-    "teams": {}
+    "teams": {},
+    "2015": {
+      "teams": {}
+    }
   },
   "setup": function(cb) {
     jsonfile.readFile(config.db_path + "db.json", (err, obj) => {

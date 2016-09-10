@@ -42,6 +42,15 @@ async.series([
         })
         .filter(_.isObject)
         .value();
+      let __events_team_previous = _.chain(events)
+        .filter(event => event.event_type === 0)
+        .filter(event => event.official)
+        .map((event) => {
+          db.data.events[event.event_code] = event;
+          return (event.event_code in db.data.teams) ? null : require('./task/event_team')(event, config.data_year - 1);
+        })
+        .filter(_.isObject)
+        .value();
       q.push(__events_stat, (err, {stat, event}) => {
         if (!err) {
           db.data.stats[event.event_code] = stat;
@@ -50,6 +59,11 @@ async.series([
       q.push(__events_team, (err, {teams, event}) => {
         if (!err) {
           db.data.teams[event.event_code] = teams;
+        }
+      });
+      q.push(__events_team_previous, (err, {teams, event}) => {
+        if (!err) {
+          db.data["2015"].teams[event.event_code] = teams;
         }
       });
     });
@@ -64,6 +78,7 @@ async.series([
       .map(event => {
         let stat = db.data.stats[event.event_code];
         let teams = db.data.teams[event.event_code];
+        let teams_previous = db.data["2015"].teams[event.event_code];
         if (!stat) {
           return [
             event.name,
@@ -72,7 +87,7 @@ async.series([
             event.timezone,
             "UTC" + moment(event.start_date).tz(event.timezone).format("Z"),
             event.location,
-            0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             "https://www.thebluealliance.com/event/" + config.analyze_year + event.event_code
           ];
         }
@@ -91,7 +106,9 @@ async.series([
           stat.playoff.high_score[0],
           stat.playoff.average_score,
           stat.playoff.average_win_score,
+          _.countBy(teams_previous, 'country_name')["China"] || 0,
           _.countBy(teams, 'country_name')["China"] || 0,
+          _.countBy(teams_previous, 'rookie_year')[config.analyze_year - 1] || 0,
           _.countBy(teams, 'rookie_year')[config.analyze_year - 1] || 0,
           "https://www.thebluealliance.com/event/" + config.data_year + event.event_code
         ];
