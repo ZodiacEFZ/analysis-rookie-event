@@ -1,0 +1,37 @@
+{
+  "name": "analysis-rookie-event",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZodiacEFZ/analysis-rookie-event.git"
+  },
+  "keywords": [
+    "usercenter",
+    "authentication",
+    "pi",
+    "windhub"
+  ],
+  "author": "SkyZH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZodiacEFZ/analysis-rookie-event/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.0.1",
+    "csv": "^1.1.0",
+    "debug": "^2.2.0",
+    "jsonfile": "^2.3.1",
+    "lodash": "^4.15.0",
+    "moment": "^2.14.1",
+    "moment-timezone": "^0.5.5",
+    "step": "0.0.6",
+    "thebluealliance": "^1.2.2"
+  }
+}
