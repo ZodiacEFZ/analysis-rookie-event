@@ -108,7 +108,7 @@ async.series([
           stat.playoff.average_win_score,
           _.countBy(teams_previous, 'country_name')["China"] || 0,
           _.countBy(teams, 'country_name')["China"] || 0,
-          _.countBy(teams_previous, 'rookie_year')[config.analyze_year - 1] || 0,
+          _.countBy(teams_previous, 'rookie_year')[config.analyze_year - 2] || 0,
           _.countBy(teams, 'rookie_year')[config.analyze_year - 1] || 0,
           "https://www.thebluealliance.com/event/" + config.data_year + event.event_code
         ];
