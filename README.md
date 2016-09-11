@@ -45,4 +45,6 @@ It's not hard to edit what data you want to be printed in the csv file. Edit `ou
 
 By default these columns will be stored:
 
-  Event Name, Start Date, End Date, Timezone, UTC, Location, Qualification High / Average / Average Win Score, Playoff High / Average / Average Win Score, China Teams in 2015, Rookie Teams in 2015, All Teams in 2015, China Teams in 2016, Rookie Teams in 2016, All Teams in 2016, The Blue Alliance URL
+```
+Event Name, Start Date, End Date, Timezone, UTC, Location, Qualification High / Average / Average Win Score, Playoff High / Average / Average Win Score, China Teams in 2015, Rookie Teams in 2015, All Teams in 2015, China Teams in 2016, Rookie Teams in 2016, All Teams in 2016, The Blue Alliance URL
+```
